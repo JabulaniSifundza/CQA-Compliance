@@ -19,7 +19,7 @@ def read_excel(file):
     row = df.iloc[0]
     st.write(df)
     st.write(row)
-    st.write(row[1])
+    st.write(row[0])
     
     
 
