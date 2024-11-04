@@ -18,7 +18,7 @@ def read_excel(file):
     df = pd.read_csv(file, skiprows=5)
     # print(df)
     st.write(df)
-    row_1 = df.loc["Cash Balance"]
+    row_1 = df.loc[0]
     st.write(row_1)
     
 
