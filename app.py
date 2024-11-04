@@ -62,6 +62,7 @@ def main():
         current_cash_amount = st.number_input("Enter Current Cash Amount Including Decimals 👇🏾", placeholder="Current Cash Level", key="current_cash_amount", step=1., format="%.2f")
         long_postions_value = st.number_input("Enter Long Position Value Including Decimals 👇🏾", placeholder="Long Position Value", key="long_postions_value", step=1., format="%.2f")
         short_position_value = st.number_input("Enter Short Position Value Including Decimals 👇🏾", placeholder="Short Position Value", key="short_position_value", step=1., format="%.2f")
-        portfolio_compliance_assistance(current_portfolio_value, current_cash_amount, long_postions_value, short_position_value)
+        if st.button('Check Cash and Dollar Compliance'):
+            portfolio_compliance_assistance(current_portfolio_value, current_cash_amount, long_postions_value, short_position_value)
 if __name__ == "__main__":
     main()
