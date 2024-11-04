@@ -17,9 +17,7 @@ def read_excel(file):
     # Load the Excel file
     df = pd.read_csv(file, skiprows=5)
     row = df.iloc[0]
-    cash_balance = row["Cash Balance"]
-    print(cash_balance)
-    st.write(df)
+    st.write(row)
         
 
 def portfolio_compliance_assistance(current_portfolio_value=1000000.00, current_cash_amount=1.00, long_postions_value=1000000.00, short_position_value=1000000.00):
