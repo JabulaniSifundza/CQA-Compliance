@@ -16,8 +16,9 @@ def check_individual_position(value_of_portfolio=1000000.00, total_mrkt_value_of
 def read_excel(file):
     # Load the Excel file
     df = pd.read_csv(file, skiprows=5)
-    print(df)
-    
+    # print(df)
+    st.write(df)
+    # row_1 = df.iloc[]
     
 
 def portfolio_compliance_assistance(current_portfolio_value=1000000.00, current_cash_amount=1.00, long_postions_value=1000000.00, short_position_value=1000000.00):
