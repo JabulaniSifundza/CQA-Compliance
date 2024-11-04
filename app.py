@@ -17,8 +17,8 @@ def read_excel(file):
     # Load the Excel file
     df = pd.read_csv(file, skiprows=5)
     row = df.iloc[0]
-    st.write(df)
-    st.write(df.items())
+    for index, row in df.iterrows():
+        print(index, row)
     
     
 
