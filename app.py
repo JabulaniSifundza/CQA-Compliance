@@ -18,8 +18,8 @@ def read_excel(file):
     df = pd.read_csv(file, skiprows=5)
     row = df.iloc[0]
     st.write(df)
-    st.write(row.loc[0])
-    st.write(row[0])
+    for key, value in df.items():
+        st.write(f"{key}: {value}")
     
     
 
