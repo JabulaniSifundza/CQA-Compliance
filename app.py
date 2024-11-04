@@ -12,6 +12,11 @@ def check_individual_position(value_of_portfolio=1000000.00, total_mrkt_value_of
     else:
         st.subheader(f"Portfolio is not compliant. Please adjust your position ❌")
     return None
+
+def read_excel(file):
+    # Load the Excel file
+    df = pd.read_csv(file, skiprows=6)
+    print(df)
         
 
 def portfolio_compliance_assistance(current_portfolio_value=1000000.00, current_cash_amount=1.00, long_postions_value=1000000.00, short_position_value=1000000.00):
@@ -75,5 +80,9 @@ def main():
         max_individual_asset_value = st.number_input("Enter the max asset value Including Decimals 👇🏾", placeholder="Max Asset Market Value", key="max_individual_asset_value", step=1., format="%.2f")
         if st.button():
             check_individual_position(total_portfolio_value, max_individual_asset_value)
+    #with upload_current_position_excel:
+    #    uploaded_file = st.file_uploader("Upload an Excel file", type=["csv"])
+    #    if uploaded_file:
+    #        portfolio_data =    
 if __name__ == "__main__":
     main()
