@@ -78,7 +78,7 @@ def main():
     with individual_position_value:
         total_portfolio_value = st.number_input("Enter Portfolio Value Including Decimals 👇🏾", placeholder="Total Portfolio Value", key="total_portfolio_value", step=1., format="%.2f")
         max_individual_asset_value = st.number_input("Enter the max asset value Including Decimals 👇🏾", placeholder="Max Asset Market Value", key="max_individual_asset_value", step=1., format="%.2f")
-        if st.button():
+        if st.button('Check Individual Position'):
             check_individual_position(total_portfolio_value, max_individual_asset_value)
     #with upload_current_position_excel:
     #    uploaded_file = st.file_uploader("Upload an Excel file", type=["csv"])
