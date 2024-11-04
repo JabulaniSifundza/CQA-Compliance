@@ -18,8 +18,9 @@ def read_excel(file):
     df = pd.read_csv(file, skiprows=5)
     # print(df)
     st.write(df)
-    row_1 = df.loc[1]
-    st.write(row_1)
+    # row_1 = df.loc[1]
+    # st.write(row_1)
+    st.write(df.index)
     
 
 def portfolio_compliance_assistance(current_portfolio_value=1000000.00, current_cash_amount=1.00, long_postions_value=1000000.00, short_position_value=1000000.00):
