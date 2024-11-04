@@ -24,7 +24,7 @@ def read_excel(file):
     st.write(df.index)
     # st.write()
     current_cash_balance = df.loc[0][1]
-    st.write(df.loc[2][0])
+    st.write(df.loc[0][3])
     
 
 def portfolio_compliance_assistance(current_portfolio_value=1000000.00, current_cash_amount=1.00, long_postions_value=1000000.00, short_position_value=1000000.00):
