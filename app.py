@@ -18,9 +18,7 @@ def read_excel(file):
     df = pd.read_csv(file, skiprows=5)
     row = df.iloc[0]
     st.write(df)
-    for key, value in df.items():
-        if key == "Cash Balance":
-            st.write(f"{key}: {value}")
+    st.write(df.items())
     
     
 
