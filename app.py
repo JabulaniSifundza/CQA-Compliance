@@ -16,6 +16,9 @@ def check_individual_position(value_of_portfolio=1000000.00, total_mrkt_value_of
 def read_excel(file):
     # Load the Excel file
     df = pd.read_csv(file, skiprows=5)
+    row = df.iloc[0]
+    cash_balance = row["Cash Balance"]
+    print(cash_balance)
     st.write(df)
         
 
