@@ -5,8 +5,14 @@ from yahooquery import Ticker
 import numpy as np
 
 
-
-
+def check_individual_position(value_of_portfolio=1000000.00, total_mrkt_value_of_position=10000.00):
+    max_asset_weight = 0.05
+    if round(total_mrkt_value_of_position/value_of_portfolio, 1) <= max_asset_weight:
+        st.subheader(f"Portfolio is compliant ✅")
+    else:
+        st.subheader(f"Portfolio is not compliant. Please adjust your position ❌")
+    return None
+        
 
 def portfolio_compliance_assistance(current_portfolio_value=1000000.00, current_cash_amount=1.00, long_postions_value=1000000.00, short_position_value=1000000.00):
         # Max Portfolio weight
@@ -28,7 +34,7 @@ def portfolio_compliance_assistance(current_portfolio_value=1000000.00, current_
         portfolio_cash_status = None
         portfolio_cash_status_string = ''
         current_cash_ratio = current_cash_amount / current_portfolio_value
-        if  round(current_cash_ratio, 1) <= 0.05:
+        if round(current_cash_ratio, 1) <= 0.05:
             portfolio_cash_status = True
             portfolio_cash_status_string += "Your Cash level is compliant"
             st.subheader(f"{portfolio_cash_status_string} ✅")
@@ -64,5 +70,10 @@ def main():
         short_position_value = st.number_input("Enter Short Position Value Including Decimals 👇🏾", placeholder="Short Position Value", key="short_position_value", step=1., format="%.2f")
         if st.button('Check Cash and Dollar Compliance'):
             portfolio_compliance_assistance(current_portfolio_value, current_cash_amount, long_postions_value, short_position_value)
+    with individual_position_value:
+        total_portfolio_value = st.number_input("Enter Portfolio Value Including Decimals 👇🏾", placeholder="Total Portfolio Value", key="total_portfolio_value", step=1., format="%.2f")
+        max_individual_asset_value = st.number_input("Enter the max asset value Including Decimals 👇🏾", placeholder="Max Asset Market Value", key="max_individual_asset_value", step=1., format="%.2f")
+        if st.button():
+            check_individual_position(total_portfolio_value, max_individual_asset_value)
 if __name__ == "__main__":
     main()
