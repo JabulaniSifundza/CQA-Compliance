@@ -19,7 +19,8 @@ def read_excel(file):
     row = df.iloc[0]
     st.write(df)
     for key, value in df.items():
-        st.write(f"{key}: {value}")
+        if key == "Cash Balance":
+            st.write(f"{key}: {value}")
     
     
 
