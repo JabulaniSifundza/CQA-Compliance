@@ -18,7 +18,7 @@ def read_excel(file):
     df = pd.read_csv(file, skiprows=5)
     row = df.iloc[0]
     st.write(df)
-    st.write(row)
+    st.write(row.iloc[0])
     st.write(row[0])
     
     
