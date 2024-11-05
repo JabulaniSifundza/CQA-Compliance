@@ -31,24 +31,29 @@ def read_excel(file):
     total_portfolio_value = total_portfolio_value.replace("$", "").replace(",", "")
     total_portfolio_value = float(total_portfolio_value)
     
+    st.write(f"Portfolio Current Value: {total_portfolio_value}")
+    
     current_cash_balance = current_cash_balance.replace("$", "").replace(",", "")
     current_cash_balance = float(current_cash_balance)
+    st.write(f"Current Cash Balance: {total_portfolio_value}")
     
     long_position_markt_value = long_position_markt_value.replace("$", "").replace(",", "")
     long_position_markt_value = float(long_position_markt_value)
+    st.write(f"Long position market value: {total_portfolio_value}")
     
     short_position_markt_value = short_position_markt_value.replace("$", "").replace(",", "")
     short_position_markt_value = float(short_position_markt_value)
+    st.write(f"Short position market value: {total_portfolio_value}")
     
     if 0.9 <= round(long_position_markt_value/short_position_markt_value, 1) <= 1.1:
         st.subheader("Portfolio is Dollar Neutral ✅")
     else:
-        st.subheader(f"Portfolio is NOT Dollar Neutral. Please adjust your positions.")
+        st.subheader("Portfolio is NOT Dollar Neutral. Please adjust your positions.")
         
     if round(current_cash_balance / total_portfolio_value, 1) <= 0.05:
-        st.subheader(f"Portfolio Cash Level is Compliant ✅")
+        st.subheader("Portfolio Cash Level is Compliant ✅")
     else:
-        st.subheader(f"Your Cash level is NOT compliant. ❌")
+        st.subheader("Your Cash level is NOT compliant. ❌")
     
 
 def portfolio_compliance_assistance(current_portfolio_value=1000000.00, current_cash_amount=1.00, long_postions_value=1000000.00, short_position_value=1000000.00):
