@@ -8,7 +8,7 @@ import numpy as np
 def check_individual_position(value_of_portfolio=1000000.00, total_mrkt_value_of_position=10000.00):
     max_asset_weight = 0.05
     if round(total_mrkt_value_of_position/value_of_portfolio, 1) <= max_asset_weight:
-        st.subheader(f"Portfolio is compliant ✅")
+        st.subheader(f"Portfolio is compliant in terms of individual position sizing. ✅")
     else:
         st.subheader(f"Portfolio is not compliant. Please adjust your position ❌")
     return None
