@@ -44,9 +44,9 @@ def read_excel(file):
     short_position_markt_value = short_position_markt_value.replace("$", "").replace(",", "")
     short_position_markt_value = float(short_position_markt_value)
     st.write(f"Portfolio Current Value: $ {total_portfolio_value}")
-    st.write(f"Current Cash Balance: $ {total_portfolio_value}")
-    st.write(f"Long position market value: $ {total_portfolio_value}")
-    st.write(f"Short position market value: $ {total_portfolio_value}")
+    st.write(f"Current Cash Balance: $ {current_cash_balance}")
+    st.write(f"Long position market value: $ {long_position_markt_value}")
+    st.write(f"Short position market value: $ {short_position_markt_value}")
     
     if 0.9 <= round(long_position_markt_value/short_position_markt_value, 1) <= 1.1:
         st.subheader("Portfolio is Dollar Neutral ✅")
