@@ -115,6 +115,8 @@ def main():
         if st.button('Check Cash and Dollar Compliance'):
             portfolio_compliance_assistance(current_portfolio_value, current_cash_amount, long_postions_value, short_position_value)
     with individual_position_value:
+        st.title("Position sizing")
+        st.subheader("Enter the total portfolio value and the market value of the largest Position held.")
         total_portfolio_value = st.number_input("Enter Portfolio Value Including Decimals 👇🏾", placeholder="Total Portfolio Value", key="total_portfolio_value", step=1., format="%.2f")
         max_individual_asset_value = st.number_input("Enter the max asset value Including Decimals 👇🏾", placeholder="Max Asset Market Value", key="max_individual_asset_value", step=1., format="%.2f")
         if st.button('Check Individual Position'):
