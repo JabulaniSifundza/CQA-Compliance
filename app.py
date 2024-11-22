@@ -104,7 +104,7 @@ def portfolio_compliance_assistance(current_portfolio_value=1000000.00, current_
 
 def main():
     st.title("CQA Compliance Tool")
-    cash_dollar_neutrality, individual_position_value, upload_current_position_excel, filter_long_positions, filter_short_positions = st.tabs(["Cash and Dollar Neutrality", "Individual Position Value", "Upload Position Spreadsheet"])
+    cash_dollar_neutrality, individual_position_value, upload_current_position_excel, filter_long_positions, filter_short_positions = st.tabs(["Cash and Dollar Neutrality", "Individual Position Value", "Current Position Filter (Long)", "Current Position Filter (Short)","Upload Position Spreadsheet"])
     with cash_dollar_neutrality:
         st.title("Cash and Dollar Neutrality")
         current_portfolio_value = st.number_input("Enter Portfolio Value Including Decimals 👇🏾", placeholder="Current Portfolio Value", key="current_portfolio_value", step=1., format="%.2f")
@@ -144,7 +144,6 @@ def main():
             st.write("You may want to consider opening these positions.")
             for position in current_not_opened_long_positions_from_model['ticker_symbol']:
                 st.write(position)
-            
     with filter_short_positions:
         uploaded_file_containing_open_positions = st.file_uploader("Upload the CSV of Open Positions", type=["csv"])
         uploaded_file_containing_short_model_positions = st.file_uploader("Upload the short positions from the model", type=["xlsx"])
