@@ -122,13 +122,13 @@ def main():
         if st.button('Check Individual Position'):
             check_individual_position(total_portfolio_value, max_individual_asset_value)
     with upload_current_position_excel:
-        uploaded_file = st.file_uploader("Upload an Excel file", type=["csv"])
+        uploaded_file = st.file_uploader("Upload an Excel file", type=["csv"], key="uploaded_file_position_compliance")
         if uploaded_file:
             portfolio_data = uploaded_file
             read_excel(portfolio_data)
     with filter_long_positions:
-        uploaded_file_containing_open_positions = st.file_uploader("Upload the CSV of Open Positions", type=["csv"])
-        uploaded_file_containing_long_model_positions = st.file_uploader("Upload the long positions from the model", type=["xlsx"])
+        uploaded_file_containing_open_positions = st.file_uploader("Upload the CSV of Open Positions", type=["csv"], key="uploaded_file_current_open_positions_long")
+        uploaded_file_containing_long_model_positions = st.file_uploader("Upload the long positions from the model", type=["xlsx"], key="uploaded_file_recommended_open_positions_long")
         if uploaded_file_containing_open_positions and uploaded_file_containing_long_model_positions:
             recommended_long_positions_df = pd.read_excel(uploaded_file_containing_long_model_positions)
             opened_long_positions_df = pd.read_csv(uploaded_file_containing_open_positions)
@@ -145,8 +145,8 @@ def main():
             for position in current_not_opened_long_positions_from_model['ticker_symbol']:
                 st.write(position)
     with filter_short_positions:
-        uploaded_file_containing_open_positions = st.file_uploader("Upload the CSV of Open Positions", type=["csv"])
-        uploaded_file_containing_short_model_positions = st.file_uploader("Upload the short positions from the model", type=["xlsx"])
+        uploaded_file_containing_open_positions = st.file_uploader("Upload the CSV of Open Positions", type=["csv"], key="uploaded_file_current_open_positions_short")
+        uploaded_file_containing_short_model_positions = st.file_uploader("Upload the short positions from the model", type=["xlsx"], key="uploaded_file_recommended_open_positions_short")
         if uploaded_file_containing_open_positions and uploaded_file_containing_short_model_positions:
             recommended_short_positions_df = pd.read_excel(uploaded_file_containing_short_model_positions)
             opened_short_positions_df = pd.read_csv(uploaded_file_containing_open_positions)
