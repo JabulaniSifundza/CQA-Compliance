@@ -104,7 +104,7 @@ def portfolio_compliance_assistance(current_portfolio_value=1000000.00, current_
 
 def main():
     st.title("CQA Compliance Tool")
-    cash_dollar_neutrality, individual_position_value, upload_current_position_excel = st.tabs(["Cash and Dollar Neutrality", "Individual Position Value", "Upload Position Spreadsheet"])
+    cash_dollar_neutrality, individual_position_value, upload_current_position_excel, filter_long_positions, filter_short_positions = st.tabs(["Cash and Dollar Neutrality", "Individual Position Value", "Upload Position Spreadsheet"])
     with cash_dollar_neutrality:
         st.title("Cash and Dollar Neutrality")
         current_portfolio_value = st.number_input("Enter Portfolio Value Including Decimals 👇🏾", placeholder="Current Portfolio Value", key="current_portfolio_value", step=1., format="%.2f")
@@ -126,5 +126,44 @@ def main():
         if uploaded_file:
             portfolio_data = uploaded_file
             read_excel(portfolio_data)
+    with filter_long_positions:
+        uploaded_file_containing_open_positions = st.file_uploader("Upload the CSV of Open Positions", type=["csv"])
+        uploaded_file_containing_long_model_positions = st.file_uploader("Upload the long positions from the model", type=["xlsx"])
+        if uploaded_file_containing_open_positions and uploaded_file_containing_long_model_positions:
+            recommended_long_positions_df = pd.read_excel(uploaded_file_containing_long_model_positions)
+            opened_long_positions_df = pd.read_csv(uploaded_file_containing_open_positions)
+            opened_long_positions_df = opened_long_positions_df[opened_long_positions_df['Quantity'] > 0]
+            current_opened_positions_not_from_model = opened_long_positions_df[~opened_long_positions_df['Symbol'].isin(recommended_long_positions_df['ticker_symbol'])]
+            current_not_opened_long_positions_from_model = recommended_long_positions_df[~recommended_long_positions_df['ticker_symbol'].isin(opened_long_positions_df['Symbol'])]
+            st.title("Long Position Filtering")
+            st.subheader("These are the long positions you are currently holding that are not from the model")
+            st.write("You may want to consider closing these positions.")
+            for position in current_opened_positions_not_from_model['Symbol']:
+                st.write(position)
+            st.subheader("These are the long positions from the model that are not currently in your portfolio.")
+            st.write("You may want to consider opening these positions.")
+            for position in current_not_opened_long_positions_from_model['ticker_symbol']:
+                st.write(position)
+            
+    with filter_short_positions:
+        uploaded_file_containing_open_positions = st.file_uploader("Upload the CSV of Open Positions", type=["csv"])
+        uploaded_file_containing_short_model_positions = st.file_uploader("Upload the short positions from the model", type=["xlsx"])
+        if uploaded_file_containing_open_positions and uploaded_file_containing_short_model_positions:
+            recommended_short_positions_df = pd.read_excel(uploaded_file_containing_short_model_positions)
+            opened_short_positions_df = pd.read_csv(uploaded_file_containing_open_positions)
+            opened_short_positions_df = opened_short_positions_df[opened_short_positions_df['Quantity'] < 0]
+            current_opened_short_positions_not_from_model = opened_short_positions_df[~opened_short_positions_df['Symbol'].isin(recommended_short_positions_df['ticker_symbol'])]
+            current_not_opened_short_positions_from_model = recommended_short_positions_df[~recommended_short_positions_df['ticker_symbol'].isin(opened_short_positions_df['Symbol'])]
+            st.title("Short Position Filtering")
+            st.subheader("These are the short positions you are currently holding that are not from the model")
+            st.write("You may want to consider closing these positions.")
+            for position in current_opened_short_positions_not_from_model['Symbol']:
+                st.write(position)
+            st.subheader("These are the short positions from the model that are not currently in your portfolio.")
+            st.write("You may want to consider opening these positions.")
+            for position in current_not_opened_short_positions_from_model['ticker_symbol']:
+                st.write(position)
+            
+        
 if __name__ == "__main__":
     main()
